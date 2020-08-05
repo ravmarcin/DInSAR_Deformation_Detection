@@ -1,0 +1,5 @@
+# open terminal using cmd comand
+# pull below code into terminal and wait until process will finished
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python GUI.py
