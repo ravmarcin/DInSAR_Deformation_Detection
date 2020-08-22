@@ -2455,7 +2455,7 @@ class Export_model_set_widget(QWidget):
                 f3 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/X_data_standarized.pkl', "wb")
                 pickle.dump(self.database_in.x_data_std[c_tr], f3)
                 f3.close()
-                f4 = open('./MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Y_data.pkl', "wb")
+                f4 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Y_data.pkl', "wb")
                 pickle.dump(self.database_in.y_data[c_tr], f4)
                 f4.close()
                 f5 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Y_data_Init_directory.pkl', "wb")
