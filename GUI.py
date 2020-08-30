@@ -125,7 +125,7 @@ class GUI_panel(QMainWindow):
         menubar = self.menuBar()
 
         fileMenu = menubar.addMenu('&File')
-        newInit = QAction('Initialization', self)
+        newInit = QAction('New image', self)
         newInit.triggered.connect(self.Initialization)
         impMenu = QMenu('Import', self)
         impIMG = QAction('Image', self)
@@ -356,10 +356,10 @@ class GUI_panel(QMainWindow):
         self.DDD_run = DDD()
         self.current_directory.set_ = np.size(self.current_database.set_) + 1
         self.current_directory.DDD_run = self.DDD_run
-        self.current_directory.input_image = np.array([[],[]])
+        self.current_directory.input_image = np.array([[0], [0]])
         self.current_directory.fileName = 'None'
-        self.current_directory.stack = (np.array([[], []]))
-        self.current_directory.parametrization = (np.array([[], []]))
+        self.current_directory.stack = (np.array([[0], [0]]))
+        self.current_directory.parametrization = (np.array([[0], [0]]))
         self.current_directory.origin = [0]
         self.current_directory.system = [0]
         self.current_directory.resolut = [0]
@@ -1692,7 +1692,7 @@ class SELECT_widgets(QWidget):
                     self.database_in.set_[c_img], self.database_in.DDD_run[c_img], self.database_in.input_image[c_img],\
                     self.database_in.fileName[c_img], self.database_in.stack[c_img],\
                     self.database_in.parametrization[c_img], self.database_in.origin[c_img],\
-                    self.database_in.system[c_img], self.directory_in.resolut[c_img]
+                    self.database_in.system[c_img], self.database_in.resolut[c_img]
 
     def Copy_current_(self):
         to_choose = (np.arange(1,len(self.database_in.DDD_run) + 1)).tolist()
@@ -2447,49 +2447,49 @@ class Export_model_set_widget(QWidget):
                 File_name = './EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str
                 os.mkdir(File_name)
                 f1 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/X_data.pkl', "wb")
-                pickle.dump(self.database_in.x_data[c_tr], f1)
+                pickle.dump(self.database_in.x_data[c_tr], f1, protocol=2)
                 f1.close()
                 f2 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/X_data_Init_directory.pkl', "wb")
-                pickle.dump(self.database_in.x_data_init[c_tr].__dict__, f2)
+                pickle.dump(self.database_in.x_data_init[c_tr].__dict__, f2, protocol=2)
                 f2.close()
                 f3 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/X_data_standarized.pkl', "wb")
-                pickle.dump(self.database_in.x_data_std[c_tr], f3)
+                pickle.dump(self.database_in.x_data_std[c_tr], f3, protocol=2)
                 f3.close()
                 f4 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Y_data.pkl', "wb")
-                pickle.dump(self.database_in.y_data[c_tr], f4)
+                pickle.dump(self.database_in.y_data[c_tr], f4, protocol=2)
                 f4.close()
                 f5 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Y_data_Init_directory.pkl', "wb")
                 if np.max(self.database_in.y_set_[c_tr]) == 0:
-                    pickle.dump(self.database_in.y_data_init[c_tr], f5)
+                    pickle.dump(self.database_in.y_data_init[c_tr], f5, protocol=2)
                 else:
-                    pickle.dump(self.database_in.y_data_init[c_tr].__dict__, f5)
+                    pickle.dump(self.database_in.y_data_init[c_tr].__dict__, f5, protocol=2)
                 f5.close()
                 f6 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Y_data_OneVsRest.pkl', "wb")
-                pickle.dump(self.database_in.y_data_ovr[c_tr], f6)
+                pickle.dump(self.database_in.y_data_ovr[c_tr], f6, protocol=2)
                 f6.close()
                 f7 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Standardization_parameters.pkl', "wb")
-                pickle.dump(self.database_in.standardization_parameters[c_tr], f7)
+                pickle.dump(self.database_in.standardization_parameters[c_tr], f7, protocol=2)
                 f7.close()
                 f8 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Model_weights.pkl', "wb")
-                pickle.dump(self.database_in.training_weights[c_tr], f8)
+                pickle.dump(self.database_in.training_weights[c_tr], f8, protocol=2)
                 f8.close()
                 f9 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Model_classes.pkl', "wb")
-                pickle.dump(self.database_in.classes[c_tr], f9)
+                pickle.dump(self.database_in.classes[c_tr], f9, protocol=2)
                 f9.close()
                 f10 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Cost_function_stat.pkl', "wb")
-                pickle.dump(self.database_in.cost_sums[c_tr], f10)
+                pickle.dump(self.database_in.cost_sums[c_tr], f10, protocol=2)
                 f10.close()
                 f11 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Probabilistic_images.pkl', "wb")
-                pickle.dump(self.database_in.probe_images[c_tr], f11)
+                pickle.dump(self.database_in.probe_images[c_tr], f11, protocol=2)
                 f11.close()
                 f12 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Predicted_image.pkl', "wb")
-                pickle.dump(self.database_in.predicted_image[c_tr], f12)
+                pickle.dump(self.database_in.predicted_image[c_tr], f12, protocol=2)
                 f12.close()
                 f13 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Decorelation_sequence.pkl', "wb")
-                pickle.dump(self.database_in.decorel_seq[c_tr], f13)
+                pickle.dump(self.database_in.decorel_seq[c_tr], f13, protocol=2)
                 f13.close()
                 f15 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Prediction_error_rate.pkl', "wb")
-                pickle.dump(self.database_in.error_rate[c_tr], f15)
+                pickle.dump(self.database_in.error_rate[c_tr], f15, protocol=2)
                 f15.close()
                 f14 = open('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/Import_model_set.txt', 'w')
                 f14.write('./EXPORT/MODEL_DATA_SET/' + 'MODEL_SET_' + dt_str + '/X_data.pkl\n')

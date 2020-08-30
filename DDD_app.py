@@ -26,7 +26,7 @@ class DDD(object):
                  rm_density_=10,rm_seed_=3,rm_min_population_factor=0.01,rm_mask_size=31,
                  max_rate=0.9,
                  max_impact_px=10,
-                 CV_iter=2):
+                 CV_iter=10):
         """ Basic mask and image settings  """
         self.change_mask = change_mask
         self.image_cutter = image_cutter
@@ -481,12 +481,12 @@ class DDD(object):
                     self.parameters_number[0] = 1
                     td_p = self.Trend_detection_(masks_stack=mask_stack, mask_size=mask_size)
                     for j in range(len(td_p)):
-                        bias = np.append(bias,np.atleast_2d(td_p[j]).T,axis=1)
+                        bias = np.append(bias,np.atleast_2d(td_p[j]).T, axis=1)
                 if self.var_parameter:
                     self.parameters_number[1] = 1
                     vlfp_p = self.Variance_line_from_px(masks_stack=mask_stack, mask_size=mask_size)
                     for j in range(len(vlfp_p)):
-                        bias = np.append(bias,np.atleast_2d(vlfp_p[j]).T,axis=1)
+                        bias = np.append(bias,np.atleast_2d(vlfp_p[j]).T, axis=1)
                 if self.standard_dev:
                     self.parameters_number[2] = 1
                     std_p = self.Standard_deviation_(masks_stack=mask_stack)
@@ -494,7 +494,7 @@ class DDD(object):
                 if self.deformation_parameter:
                     self.parameters_number[3] = 1
                     for j in depths:
-                        def_p = self.Deformation_simple_(masks_stack=mask_stack,mask_size=mask_size,depth=j)
+                        def_p = self.Deformation_simple_(masks_stack=mask_stack, mask_size=mask_size,depth=j)
                         bias = np.append(bias, np.atleast_2d(def_p).T, axis=1)
             masks_size_ar = np.array(masks_size)
             max_mask_size_pos = np.squeeze(np.argwhere(masks_size_ar == max(masks_size_ar)))
